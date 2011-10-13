@@ -16,7 +16,7 @@
       true)))
 
 (defn xy-from-position [position width height]
-  [(mod position width) (quot position height)])
+  [(mod position width) (quot position width)])
 
 (defn position-from-xy [[x y] width]
   (+ x (* width y)))
@@ -37,7 +37,7 @@
       (recur (inc position) (conj new-field (new-element position field width height r1 r2)))
       new-field)))
         
-(defn all-possible-moves [width height]
+(defn all-possible-moves [ width height]
   "Generates the sequence of all possible moves."
   (apply concat
     (for [x1 (range width) y1 (range height)]
@@ -82,7 +82,8 @@
           (recur (inc position) (min min-x x) (min min-y y) (max max-x x) (max max-y y)))
         (recur (inc position) min-x min-y max-x max-y)))))   
 
-(defn get-moves-fn [width height max-depth]
+(defn get-moves-fn 
+  [width height max-depth]
   "Returns a function [ field depth last-move -> moves-sequence ]" 
   (let [all-possible-moves (all-possible-moves width height)]
     (fn [field depth last-move]
